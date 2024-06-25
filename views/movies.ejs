@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <style>
+      /* Custom styles for specific adjustments */
+      .sidebar {
+        height: calc(
+          100vh - 48px
+        ); /* Adjust this value according to your header's height */
+        overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: rgba(255, 255, 255, 0.05);
+        table-layout: fixed; /* Ensures table uses the fixed layout algorithm */
+      }
+
+      .table th,
+      .table td {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 12px;
+        text-align: center;
+        white-space: nowrap; /* Prevents wrapping content */
+        overflow: hidden; /* Hides overflow content */
+        text-overflow: ellipsis; /* Shows ellipsis (...) when content overflows */
+      }
+
+      .table th {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #ddd;
+        text-transform: uppercase;
+      }
+
+      .table tbody tr:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .table tbody tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .table-responsive {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        max-width: 100%; /* Limit width to prevent overflowing parent */
+      }
+
+      .table-container {
+        margin-top: 20px; /* Adjust margin as needed */
+        margin-bottom: 20px; /* Adjust margin as needed */
+      }
+      #username {
+        text-transform: capitalize !important;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <!-- Header -->
+    <header class="bg-gray-800 shadow py-0 my-1">
+      <%- include('../components/header'); %>
+    </header>
+
+    <div class="flex">
+      <!-- Sidebar -->
+      <aside
+        class="bg-gray-800 text-gray-100 w-60 p-6 flex flex-col relative rounded-r-lg sidebar">
+        <%- include('../components/sidebar'); %>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 bg-gray-900 p-6 overflow-y-auto">
+        <%- include('../components/moviesMain'); %>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 shadow p-4 mt-1">
+      <%- include('../components/footer'); %>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const genreInput = document.getElementById("genreInput");
+        const genrePopover = document.getElementById("genrePopover");
+        const genreCards = document.querySelectorAll(".genre-card");
+
+        // Function to toggle genre popover visibility
+        function toggleGenrePopover() {
+          genrePopover.classList.toggle("hidden");
+        }
+
+        // Event listener for showing/hiding genre popover
+        genreInput.addEventListener("click", function () {
+          toggleGenrePopover();
+        });
+
+        // Event listener for selecting/deselecting a genre card
+        genreCards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const selectedGenre = card.getAttribute("data-genre");
+            let currentGenres = genreInput.value
+              .split(",")
+              .map((g) => g.trim())
+              .filter(Boolean);
+
+            if (currentGenres.includes(selectedGenre)) {
+              // Remove genre from input value
+              currentGenres = currentGenres.filter(
+                (genre) => genre !== selectedGenre
+              );
+            } else {
+              // Add genre to input value
+              currentGenres.push(selectedGenre);
+            }
+
+            genreInput.value = currentGenres.join(", ");
+
+            // Toggle background color to indicate selection
+            if (currentGenres.includes(selectedGenre)) {
+              card.classList.remove("bg-gray-700");
+              card.classList.add("bg-blue-500");
+            } else {
+              card.classList.remove("bg-blue-500");
+              card.classList.add("bg-gray-700");
+            }
+          });
+        });
+
+        // Close popover if clicked outside of it
+        document.addEventListener("click", function (event) {
+          if (
+            !genreInput.contains(event.target) &&
+            !genrePopover.contains(event.target)
+          ) {
+            genrePopover.classList.add("hidden");
+          }
+        });
+      });
+    </script>
+    <script>
+      function searchMovieOrSeries() {
+        let searchValue = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        let rows = document.querySelectorAll(".table tbody tr");
+        let found = false;
+
+        rows.forEach(function (row) {
+          let title = row.cells[0].innerText.toLowerCase().trim();
+
+          if (title === searchValue) {
+            found = true;
+
+            // Scroll to the found row
+            row.scrollIntoView({ behavior: "smooth", block: "center" });
+
+            // Redirect based on genre (assuming genre is stored in the second cell)
+            let genre = row.cells[1].innerText.toLowerCase().trim();
+            if (genre === "movie") {
+              window.location.href =
+                "/movies/" + encodeURIComponent(row.cells[3].innerText); // Assuming ID in fourth cell
+            } else if (genre === "series") {
+              window.location.href =
+                "/series/" + encodeURIComponent(row.cells[3].innerText); // Assuming ID in fourth cell
+            }
+          }
+        });
+
+        if (!found) {
+          // Show notification
+          var notification = document.getElementById("notification");
+          notification.classList.remove("hidden");
+          setTimeout(function () {
+            notification.classList.add("hidden");
+          }, 3000); // Hide after 3 seconds
+        }
+      }
+    </script>
+  </body>
+</html>

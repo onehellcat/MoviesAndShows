@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body class="bg-gray-900 text-gray-100">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-lg font-semibold text-gray-100">Admin Dashboard</div>
+      <div class="flex-1 flex justify-center px-2 relative">
+        <!-- Search Bar -->
+        <div class="relative w-full max-w-md">
+          <div
+            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg
+              class="h-5 w-5 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M9 1a8 8 0 015.938 13.43l5.986 5.985-1.415 1.414-5.985-5.986A8 8 0 119 1zm0 2a6 6 0 100 12 6 6 0 000-12z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <input
+            id="searchInput"
+            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-gray-900 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            type="search"
+            placeholder="Search"
+            oninput="handleAutofill()"
+            onkeypress="if(event.keyCode === 13) { searchMovieOrSeries(); }" />
+        </div>
+
+        <!-- Notification Popup -->
+        <div
+          id="notification"
+          class="absolute right-32 top-0 mt-0 mr-0 p-2 bg-red-500 text-white text-sm rounded-lg hidden">
+          Not found.
+        </div>
+      </div>
+      <!-- Navigation -->
+      <nav class="flex items-center space-x-4">
+        <a href="#" class="text-gray-300 hover:text-gray-100">Settings</a>
+        <a href="/logout" class="text-gray-300 hover:text-gray-100">Log out</a>
+      </nav>
+    </div>
+  </body>
+</html>

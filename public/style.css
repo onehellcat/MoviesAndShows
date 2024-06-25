@@ -1,0 +1,94 @@
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+btn:focus, a:focus
+{
+         outline: none;
+}
+.navbar-toggler:focus
+{
+         outline: none !important;
+         box-shadow: none;
+}
+
+
+.disabled:hover{
+    cursor: wait !important;
+}
+
+.main-content{
+  height: 100%;
+}
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding-top: 48px;
+      padding-bottom: 20px;
+      /* border-right: 1px solid #dee2e6; */
+      width: 250px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Main content */
+    .main-content {
+      height: 100%;
+      margin-left: 250px; /* Same as sidebar width */
+      padding: 20px;
+      color: var(--text-color);
+     
+    }
+
+    /* Profile dropdown */
+    .profile-dropdown {
+      color: var(--link-color);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .profile-dropdown:hover {
+      text-decoration: underline;
+    }
+
+
+/* 
+ */
+
+
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+
+.avatar.sm {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: .818125rem;
+}
+
+.table-nowrap .table td,
+.table-nowrap .table th {
+    white-space: nowrap;
+}
+
+.table>:not(caption)>*>* {
+    padding: 0.75rem 1.25rem;
+    border-bottom-width: 1px;
+}
+
+
+
+
+b{
+  text-transform: capitalize !important;
+}
