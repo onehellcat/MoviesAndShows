@@ -7,6 +7,7 @@
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet" />
+    <link rel="stylesheet" href="../public/style.css" />
   </head>
   <body class="bg-gray-900 text-gray-100">
     <!-- Header -->
@@ -21,9 +22,20 @@
         <%- include('../components/sidebar'); %>
       </aside>
 
-      <!-- Main Content -->
+      <!-- Main content -->
       <main class="flex-1 bg-gray-900 p-6 overflow-y-auto">
-        <%- include('../components/moviesMain'); %>
+        <div class="shadow rounded-lg p-6 min-h-full mr-3 ml-2">
+          <div class="rounded-lg p-6 min-h-full mr-3 ml-2">
+            <h2 class="text-2xl font-semibold text-gray-100">Watch Later</h2>
+            <p class="mt-4 text-gray-300">
+              Welcome to your Watchlater list
+              <b id="username"><%=username%> !</b>
+            </p>
+          </div>
+
+          <%- include('../components/watchlater'); %>
+          <%-include('../components/watchlaterList'); %>
+        </div>
       </main>
     </div>
 

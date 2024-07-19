@@ -14,3 +14,4 @@ userdb.js
 testRoutes/
 routes/testpage.js
 utils/passwordHash.js
+/test-components

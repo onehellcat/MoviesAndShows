@@ -8,17 +8,6 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet" />
     <link rel="stylesheet" href="../public/style.css" />
-    <style>
-      /* Custom styles for specific adjustments */
-      .sidebar {
-        height: calc(100vh - 48px);
-        /* 100vh - 48px: 100vh is full viewport height, subtracting 48px for header height */
-        overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
-      }
-      #username {
-        text-transform: capitalize !important;
-      }
-    </style>
   </head>
   <body class="bg-gray-900 text-gray-100">
     <!-- Header -->
@@ -37,7 +26,10 @@
       <main class="flex-1 bg-gray-900 p-6 overflow-y-auto">
         <div class="bg-gray-800 shadow rounded-lg p-6 min-h-full mr-3 ml-2">
           <h2 class="text-2xl font-semibold text-gray-100">Dashboard</h2>
-          <p class="mt-4 text-gray-300">Welcome to the Dashboard</p>
+          <p class="mt-4 text-gray-300">
+            Welcome to the dashboard
+            <b id="username"><%=username%> !</b>
+          </p>
           <p class="mt-4 text-gray-300">Work in progress</p>
           <!-- TODO: a working dashboard to see data 
               ? How many tv shows / movies seen, added, most watched genre's etc  

@@ -1,0 +1,56 @@
+<style>
+  /* Custom styles for specific adjustments */
+  .sidebar {
+    height: calc(100vh - 80px);
+    /* 100vh - 48px: 100vh is full viewport height, subtracting 48px for header height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+  }
+  #username {
+    text-transform: capitalize !important;
+  }
+</style>
+
+<!-- Table Container -->
+<div class="container mx-auto px-4 mt-6">
+  <!-- Responsive Table -->
+  <div class="overflow-x-auto rounded-lg overflow-y-auto relative">
+    <table
+      class="border-collapse table-auto w-full whitespace-no-wrap bg-gray-800 table-striped relative">
+      <thead></thead>
+      <tbody class="divide-y divide-gray-700">
+        <!-- Movie Cards -->
+        <div class="col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <% data.forEach(function(watchlater) { %>
+          <div class="bg-gray-800 shadow rounded-lg p-4">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold"><%= watchlater.Name %></h3>
+              <span class="text-gray-300 mb-2"> <%= watchlater.Type %></span>
+            </div>
+            <div class="text-gray-300 mb-2"></div>
+            <a
+              href="/watchlater/seen/<%= watchlater.id %>"
+              class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:outline-none focus:border-green-700 focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition">
+              Seen
+            </a>
+
+            <a
+              class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 disabled:opacity-25 transition">
+              Edit
+              <!-- href="/watchlater/edit/<%= watchlater.id %>" -->
+            </a>
+
+            <a
+              href="/watchlater/delete/<%= watchlater.id %>"
+              class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition">
+              Delete
+            </a>
+          </div>
+          <% }) %>
+        </div>
+        <!-- End of EJS Rendering -->
+      </tbody>
+    </table>
+  </div>
+  <!-- End of Responsive Table -->
+</div>
+<!-- End of Table Container -->

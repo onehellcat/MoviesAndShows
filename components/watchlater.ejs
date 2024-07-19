@@ -1,0 +1,333 @@
+<style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
+<!-- Flex container for form and table -->
+<div class="flex flex-col">
+  <!-- Input Row -->
+  <form
+    class="bg-gray-800 shadow rounded-lg p-4"
+    action="/watchlater"
+    method="POST">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <!-- Name input -->
+      <div class="col-span-1">
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          class="form-input px-4 py-2 bg-gray-900 text-gray-100 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-full"
+          required />
+      </div>
+      <div class="relative">
+        <input
+          type="text"
+          name="genre"
+          id="genreInput"
+          placeholder="Genres..."
+          class="form-input px-4 py-2 bg-gray-900 text-gray-100 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-full"
+          autocomplete="off"
+          readonly
+          required />
+        <!-- Genre cards popover -->
+        <div
+          id="genrePopover"
+          class="absolute left-0 mt-1 w-full bg-gray-800 shadow-lg rounded-md hidden z-10">
+          <div class="p-2">
+            <div class="grid grid-cols-3 gap-2">
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Action">
+                Action
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Adventure">
+                Adventure
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Animation">
+                Animation
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Comedy">
+                Comedy
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Crime">
+                Crime
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Documentary">
+                Documentary
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Drama">
+                Drama
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Family">
+                Family
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Fantasy">
+                Fantasy
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="History">
+                History
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Horror">
+                Horror
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Music">
+                Music
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Mystery">
+                Mystery
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Romance">
+                Romance
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Science Fiction">
+                Sci-Fi
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Thriller">
+                Thriller
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="War">
+                War
+              </div>
+              <div
+                class="genre-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer w-fit"
+                data-genre="Western">
+                Western
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-2">
+        <input
+          type="number"
+          step="0.1"
+          min="0.1"
+          max="10"
+          name="IMDb"
+          placeholder="IMDb Rating"
+          class="form-input px-4 py-2 bg-gray-900 text-gray-100 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-fit"
+          required />
+      </div>
+
+      <!-- Type input -->
+      <div class="col-span-1 relative">
+        <input
+          type="text"
+          name="type"
+          id="typeInput"
+          placeholder="Type..."
+          class="form-input w-full px-4 py-2 bg-gray-900 text-gray-100 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+          autocomplete="off"
+          readonly
+          required />
+
+        <!-- Type cards popover -->
+        <div
+          id="typePopover"
+          class="absolute left-0 mt-1 w-full bg-gray-800 shadow-lg rounded-md hidden z-10">
+          <div class="p-2">
+            <div class="grid grid-cols-2 gap-2">
+              <div
+                class="type-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer"
+                data-type="movies">
+                Movie
+              </div>
+              <div
+                class="type-card p-2 text-center text-gray-100 bg-gray-700 rounded-md cursor-pointer"
+                data-type="series">
+                Series
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add button -->
+      <div class="col-span-1">
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+          Add
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- End of Flex container -->
+
+<script>
+  document.querySelector("form").addEventListener("submit", function (event) {
+    const selectedType = typeInput.value.trim();
+    const selectedGenres = genreInput.value.trim();
+
+    if (!selectedCard) {
+      // alert("Please select a type before submitting."); Use something else for this.
+      event.preventDefault(); // Prevent form submission if no type is selected
+      return;
+    }
+
+    // Validate genres
+    if (selectedGenres === "") {
+      event.preventDefault(); // Prevent form submission if no genres are selected
+      // Optionally, provide feedback to the user about selecting at least one genre
+      return;
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const typeInput = document.getElementById("typeInput");
+    const typePopover = document.getElementById("typePopover");
+    const typeCards = document.querySelectorAll(".type-card");
+    let selectedCard = null; // Variable to keep track of the selected card
+
+    // Function to toggle type popover visibility
+    function toggleTypePopover() {
+      typePopover.classList.toggle("hidden");
+    }
+
+    // Event listener for showing/hiding type popover
+    typeInput.addEventListener("click", function () {
+      toggleTypePopover();
+    });
+
+    // Event listener for selecting a type card
+    typeCards.forEach((card) => {
+      card.addEventListener("click", function () {
+        if (selectedCard) {
+          // Deselect previously selected card
+          selectedCard.classList.remove("bg-blue-500");
+          selectedCard.classList.add("bg-gray-700");
+        }
+
+        // Select the new card
+        card.classList.remove("bg-gray-700");
+        card.classList.add("bg-blue-500");
+        typeInput.value = card.getAttribute("data-type"); // Set the input value to the selected type
+        selectedCard = card; // Update selectedCard
+
+        // Hide the popover after selection
+        typePopover.classList.add("hidden");
+      });
+    });
+
+    // Close popover if clicked outside of it
+    document.addEventListener("click", function (event) {
+      if (
+        !typeInput.contains(event.target) &&
+        !typePopover.contains(event.target)
+      ) {
+        typePopover.classList.add("hidden");
+      }
+    });
+
+    // Form submission check
+    document.querySelector("form").addEventListener("submit", function (event) {
+      if (!selectedCard) {
+        // alert("Please select a type before submitting."); Use something else for this.
+        event.preventDefault(); // Prevent form submission if no type is selected
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const genreInput = document.getElementById("genreInput");
+    const genrePopover = document.getElementById("genrePopover");
+    const genreCards = document.querySelectorAll(".genre-card");
+
+    function debounce(func, wait, immediate) {
+      let timeout;
+      return function () {
+        const context = this,
+          args = arguments;
+        const later = function () {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    }
+
+    function toggleGenrePopover() {
+      genrePopover.classList.toggle("hidden");
+    }
+
+    genreInput.addEventListener("click", debounce(toggleGenrePopover, 300));
+
+    genreCards.forEach((card) => {
+      card.addEventListener("click", function () {
+        const selectedGenre = card.getAttribute("data-genre");
+        let currentGenres = genreInput.value
+          .split(",")
+          .map((g) => g.trim())
+          .filter(Boolean);
+
+        if (currentGenres.includes(selectedGenre)) {
+          currentGenres = currentGenres.filter(
+            (genre) => genre !== selectedGenre
+          );
+        } else {
+          currentGenres.push(selectedGenre);
+        }
+
+        genreInput.value = currentGenres.join(", ");
+
+        if (currentGenres.includes(selectedGenre)) {
+          card.classList.remove("bg-gray-700");
+          card.classList.add("bg-blue-500");
+        } else {
+          card.classList.remove("bg-blue-500");
+          card.classList.add("bg-gray-700");
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (
+        !genreInput.contains(event.target) &&
+        !genrePopover.contains(event.target)
+      ) {
+        genrePopover.classList.add("hidden");
+      }
+    });
+  });
+</script>
