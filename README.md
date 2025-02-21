@@ -4,7 +4,7 @@ In development, not documented at the moment.
 New features:
 * User Authentication
 * Watch Later list 
-* User profile page ( In development )
+* User profile page 
 
    <br>
 I'm planning to redo the UI, it's already in the making.
